@@ -27,7 +27,7 @@ jobs:
         echo "Waiting for pods to be in running state..."
         while [[ $(kubectl get pods -l app=node-app -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do
           echo "Waiting for pod..."
-          kubectl get pods
+          kubectl describe pods
           sleep 10
         done
         echo "Pods are running"
