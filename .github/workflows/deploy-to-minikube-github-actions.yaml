@@ -23,14 +23,8 @@ jobs:
       run:
         kubectl apply -f k8s-node-app.yaml
     - name: Wait for Pods to be Running
-      run: |
-        echo "Waiting for pods to be in running state..."
-        while [[ $(kubectl get pods -l app=node-app -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do
-          echo "Waiting for pod..."
-          kubectl describe pods
-          sleep 10
-        done
-        echo "Pods are running"
+      run: 
+        sleep 10
     - name: Test service URLs
       run: |
           kubectl get pods
